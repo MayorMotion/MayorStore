@@ -1,0 +1,375 @@
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #2c3e50;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links a {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .user-actions {
+        gap: 10px;
+    }
+    
+    .user-name {
+        display: none;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .hero {
+        padding: 50px 20px;
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    
+    .cart-sidebar {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-container {
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        gap: 10px;
+    }
+    
+    .logo img {
+        height: 50px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .user-actions {
+        gap: 8px;
+    }
+    
+    .btn-login, .btn-register {
+        display: none;
+    }
+    
+    .btn-login.mobile, .btn-register.mobile {
+        display: block;
+    }
+    
+    .mobile-auth {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .hero {
+        padding: 40px 15px;
+        margin: 15px 0;
+    }
+    
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+    
+    .btn-shop {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .form-box {
+        width: 95%;
+    }
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+}
+
+/* Mobile Auth Buttons */
+.mobile-auth {
+    display: none;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+/* Cart open state */
+.cart-open {
+    right: 0;
+}
+
+/* Form visible state */
+.form-visible {
+    display: flex;
+}
+
+/* Animation for cart items */
+@keyframes cartItemAdd {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cart-item {
+    animation: cartItemAdd 0.3s ease;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    z-index: 3000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: notificationSlide 0.3s ease;
+}
+
+@keyframes notificationSlide {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.success {
+    background-color: #2ecc71;
+}
+
+.error {
+    background-color: #e74c3c;
+}
+
+.info {
+    background-color: #3498db;
+}
+
+/* Loading Spinner */
+.spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(52, 152, 219, 0.2);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+}
+
+/* Responsive Styles for About Section */
+@media (max-width: 992px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-image {
+        position: static;
+        order: -1;
+    }
+    
+    .mission-vision {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .cta-section {
+        padding: 40px 20px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-shop-now, .btn-contact-us {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 60px 0;
+    }
+    
+    .about-header {
+        margin-bottom: 40px;
+    }
+    
+    .about-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .achievement-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .cta-section h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-section {
+        padding: 40px 0;
+    }
+    
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+    
+    .mission, .vision {
+        padding: 20px;
+    }
+    
+    .achievement-stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .image-container img {
+        height: 250px;
+    }
+    
+    .cta-section {
+        padding: 30px 15px;
+    }
+    
+    .cta-section h3 {
+        font-size: 1.4rem;
+    }
+    
+    .cta-section p {
+        font-size: 1rem;
+    }
+}

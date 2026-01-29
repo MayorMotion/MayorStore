@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- UPDATED: 7.5-second meta refresh to ensure loader completes -->
+    <meta http-equiv="refresh" content="7.5; url='index.html'">
+    <title>Mayor's Store - Loading...</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Loading Container */
+        .loading-container {
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Header */
+        .loading-header {
+            text-align: center;
+            padding: 40px 0;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            font-size: 4rem;
+            color: #f39c12;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .slogan {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Progress Section - FIXED: Progress bar completes fully */
+        .progress-section {
+            text-align: center;
+            padding: 40px 0;
+            margin: 40px 0;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transition: width 0.1s linear, background 0.5s ease;
+        }
+
+        .progress-bar.complete {
+            background: #2ecc71 !important; /* Green when fully complete */
+            transition: background 0.3s ease;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .progress-bar.complete::after {
+            animation: none; /* Stop shimmer when complete */
+            background: rgba(46, 204, 113, 0.3); /* Green shimmer */
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .progress-text i {
+            color: #f39c12;
+            animation: spin 2s linear infinite;
+        }
+
+        .progress-text.complete i {
+            color: #2ecc71;
+            animation: none;
+        }
+
+        /* Countdown Timer */
+        .countdown-timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .countdown-timer.complete {
+            border-color: #2ecc71;
+        }
+
+        /* Completion Animation */
+        .completion-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(46, 204, 113, 0.1);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 999;
+            transition: opacity 0.5s ease;
+        }
+
+        .completion-animation.active {
+            opacity: 1;
+        }
+
+        /* Features Grid */
+        .features-section {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 40px 0 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #f39c12;
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #f39c12;
+            margin-bottom: 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f39c12;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .loading-footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .redirect-notice {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .redirect-notice i {
+            color: #f39c12;
+        }
+
+        .redirect-notice.complete i {
+            color: #2ecc71;
+        }
+
+        .skip-button {
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .skip-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+        }
+
+        .skip-button.complete {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+
+        .skip-button.complete:hover {
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Loading State */
+        .loading-state {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-state.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .loading-container {
+                padding: 20px;
+            }
+            
+            .logo-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slogan {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 25px;
+            }
+            
+            .countdown-timer {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo-text h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-icon {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Completion Animation Overlay -->
+    <div class="completion-animation" id="completionAnimation"></div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-timer" id="countdownTimer">
+        <i class="fas fa-clock"></i> Redirecting in: <span id="countdown">7</span>s
+    </div>
+
+    <!-- Initial Loading State -->
+    <div class="loading-state" id="initialLoading">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Mayor's <span>Store</span></h1>
+            </div>
+        </div>
+        <p style="margin-top: 20px; opacity: 0.8;">Loading page content...</p>
+        <div style="width: 100px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 20px; overflow: hidden;">
+            <div style="width: 0%; height: 100%; background: #f39c12; border-radius: 2px; animation: initialLoad 1s ease infinite;"></div>
+        </div>
+    </div>
+
+    <!-- Main Loading Content (hidden initially) -->
+    <div class="loading-container" id="mainContent" style="display: none;">
+        <!-- Header -->
+        <header class="loading-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Mayor's <span>Store</span></h1>
+                </div>
+            </div>
+            <p class="slogan">Your Premium Shopping Destination in Damaturu & Beyond</p>
+        </header>
+
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">
+                <i class="fas fa-cog fa-spin"></i>
+                <span id="status-text">Initializing your shopping experience...</span>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">Why Shop With Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Fast & Free Delivery</h3>
+                    <p>Get your orders delivered quickly with our reliable logistics network across Yobe State.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Secure Payment</h3>
+                    <p>Shop with confidence using our encrypted payment system with multiple payment options.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Quality Guaranteed</h3>
+                    <p>Every product undergoes rigorous quality checks before reaching you.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our customer service team is always ready to assist you with any queries.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Best Prices</h3>
+                    <p>We offer competitive prices without compromising on quality.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? Return products within 7 days for a full refund.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="loading-footer">
+            <div class="redirect-notice" id="redirectNotice">
+                <i class="fas fa-clock"></i>
+                <span>Preparing your shopping experience...</span>
+            </div>
+            <p style="opacity: 0.8; margin-bottom: 20px;">You'll be automatically redirected in a moment</p>
+            <button class="skip-button" id="skip-button">
+                <i class="fas fa-forward"></i> Enter Store Now
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================
+        // 7-SECOND LOADING WITH COMPLETE ANIMATION
+        // ============================================
+        
+        console.log('🚀 Mayor\'s Store Loading Page - Complete 7-second version');
+        
+        // Global flag to prevent multiple redirects
+        let isRedirecting = false;
+        let intervals = [];
+        
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ DOM fully loaded');
+            
+            // Add CSS for initial loading animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes initialLoad {
+                    0% { width: 0%; transform: translateX(-100%); }
+                    50% { width: 100%; transform: translateX(0%); }
+                    100% { width: 100%; transform: translateX(100%); }
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Initialize page after brief delay
+            setTimeout(initializePage, 300);
+        });
+        
+        function initializePage() {
+            console.log('🚀 Initializing loading page...');
+            
+            const initialLoading = document.getElementById('initialLoading');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Hide initial loader and show main content
+            initialLoading.classList.add('hidden');
+            setTimeout(() => {
+                initialLoading.style.display = 'none';
+                mainContent.style.display = 'flex';
+                console.log('📱 Main content displayed');
+                
+                // Start the complete 7-second loading sequence
+                startCompleteSevenSecondLoading();
+            }, 500);
+        }
+        
+        function startCompleteSevenSecondLoading() {
+            console.log('⏱️ Starting complete 7-second loading sequence...');
+            
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const statusText = document.getElementById('status-text');
+            const skipButton = document.getElementById('skip-button');
+            const countdownElement = document.getElementById('countdown');
+            const countdownTimer = document.getElementById('countdownTimer');
+            const redirectNotice = document.getElementById('redirectNotice');
+            const completionAnimation = document.getElementById('completionAnimation');
+            
+            // FIXED: 7-second configuration with completion phase
+            const LOAD_PHASE = 6000;      // 6 seconds - progress bar fills
+            const COMPLETE_PHASE = 1000;  // 1 second - completion animation
+            const FADE_PHASE = 500;       // 0.5 seconds - fade out
+            const TOTAL_TIME = LOAD_PHASE + COMPLETE_PHASE + FADE_PHASE; // 7.5 seconds total
+            
+            let startTime = Date.now();
+            let progress = 0;
+            let loaderComplete = false;
+            
+            // Status messages for the entire sequence
+            const loadMessages = [
+                "Initializing your shopping experience...",
+                "Loading premium products from our catalog...",
+                "Setting up secure payment gateway...",
+                "Optimizing for your device and connection...",
+                "Preparing personalized recommendations...",
+                "Loading customer reviews and ratings...",
+                "Setting up delivery options for your location...",
+                "Configuring special offers and discounts...",
+                "Verifying inventory availability...",
+                "Finalizing your premium shopping experience..."
+            ];
+            
+            const completeMessages = [
+                "✅ All systems ready!",
+                "✅ Shopping experience optimized!",
+                "✅ Welcome to Mayor's Store!"
+            ];
+            
+            let messageIndex = 0;
+            
+            // Function to update status message during loading phase
+            function updateLoadMessage() {
+                if (messageIndex < loadMessages.length) {
+                    statusText.textContent = loadMessages[messageIndex];
+                    messageIndex++;
+                    return true;
+                }
+                return false;
+            }
+            
+            // Function to show completion message
+            function showCompletionMessage() {
+                if (!loaderComplete) {
+                    loaderComplete = true;
+                    
+                    // Mark progress bar as complete
+                    progressBar.classList.add('complete');
+                    progressText.classList.add('complete');
+                    countdownTimer.classList.add('complete');
+                    redirectNotice.classList.add('complete');
+                    skipButton.classList.add('complete');
+                    
+                    // Show completion animation
+                    completionAnimation.classList.add('active');
+                    
+                    // Update status to completion message
+                    statusText.textContent = completeMessages[0];
+                    statusText.style.color = '#2ecc71';
+                    statusText.style.fontWeight = 'bold';
+                    
+                    // Update button text
+                    skipButton.innerHTML = '<i class="fas fa-check-circle"></i> Enter Store Now';
+                    
+                    console.log('✅ Loader completely finished at 100%');
+                }
+            }
+            
+            // Initial message
+            updateLoadMessage();
+            const messageInterval = setInterval(() => {
+                if (!loaderComplete) {
+                    if (!updateLoadMessage()) {
+                        // Switch to completion messages when load messages are done
+                        showCompletionMessage();
+                    }
+                }
+            }, 600);
+            intervals.push(messageInterval);
+            
+            // Update countdown timer (7 seconds for user, 7.5 total)
+            let countdown = 7;
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdownElement) {
+                    countdownElement.textContent = countdown;
+                    
+                    // Update countdown text when complete
+                    if (countdown <= 0) {
+                        countdownElement.textContent = '0';
+                        countdownElement.style.color = '#2ecc71';
+                        countdownElement.style.fontWeight = 'bold';
+                    }
+                }
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+            intervals.push(countdownInterval);
+            
+            // Main animation loop - THREE PHASES
+            function animateProgress() {
+                const elapsed = Date.now() - startTime;
+                progress = Math.min(elapsed / TOTAL_TIME, 1);
+                
+                // PHASE 1: Loading (0-6 seconds)
+                if (elapsed <= LOAD_PHASE) {
+                    const phaseProgress = elapsed / LOAD_PHASE;
+                    const easedProgress = 1 - Math.pow(1 - phaseProgress, 1.5);
+                    const widthPercent = Math.min(easedProgress * 100, 100);
+                    
+                    if (progressBar) {
+                        progressBar.style.width = widthPercent + '%';
+                    }
+                }
+                // PHASE 2: Completion (6-7 seconds) - Progress bar at 100%
+                else if (elapsed <= LOAD_PHASE + COMPLETE_PHASE) {
+                    if (progressBar) {
+                        progressBar.style.width = '100%';
+                    }
+                    
+                    // Show completion state halfway through this phase
+                    if (elapsed >= LOAD_PHASE + 500 && !loaderComplete) {
+                        showCompletionMessage();
+                    }
+                }
+                // PHASE 3: Fade-out (7-7.5 seconds)
+                else if (elapsed <= TOTAL_TIME) {
+                    const fadeProgress = (elapsed - (LOAD_PHASE + COMPLETE_PHASE)) / FADE_PHASE;
+                    document.body.style.opacity = 1 - fadeProgress;
+                }
+                
+                // Complete redirect after full duration
+                if (progress >= 1 && !isRedirecting) {
+                    completeRedirect();
+                } else if (progress < 1) {
+                    requestAnimationFrame(animateProgress);
+                }
+            }
+            
+            // Start animation loop
+            requestAnimationFrame(animateProgress);
+            
+            // Redirect function
+            function completeRedirect() {
+                if (isRedirecting) return;
+                isRedirecting = true;
+                
+                console.log('✅ 7.5-second sequence complete, redirecting to index.html...');
+                
+                // Clear all intervals
+                intervals.forEach(interval => clearInterval(interval));
+                
+                // Mark loading as completed
+                sessionStorage.setItem('loadingPageShown', 'true');
+                
+                // Ensure fade-out is complete
+                document.body.style.opacity = '0';
+                
+                // Short delay to ensure completion animation is visible, then redirect
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, FADE_PHASE);
+            }
+            
+            // Skip button functionality
+            if (skipButton) {
+                skipButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('⏭️ Skip button clicked');
+                    
+                    // Fast-forward to completion
+                    showCompletionMessage();
+                    
+                    // Update progress bar
+                    if (progressBar) {
+                        progressBar.style.width = '100%';
+                        progressBar.classList.add('complete');
+                    }
+                    
+                    // Update countdown
+                    if (countdownElement) {
+                        countdownElement.textContent = '0';
+                        countdownElement.style.color = '#2ecc71';
+                    }
+                    
+                    // Show completion briefly, then redirect
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 300);
+                });
+            }
+            
+            // Log initial status
+            console.log('📊 Complete loading sequence started');
+            console.log('⏳ Phases:');
+            console.log('   - Loading: 0-6 seconds (progress bar fills)');
+            console.log('   - Complete: 6-7 seconds (animation at 100%)');
+            console.log('   - Fade-out: 7-7.5 seconds (fade to store)');
+            console.log('📍 Total: 7.5 seconds, redirecting to: index.html');
+        }
+        
+        // Clean up function
+        function cleanup() {
+            intervals.forEach(interval => clearInterval(interval));
+            intervals = [];
+        }
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', cleanup);
+        
+        console.log('🔒 Complete 7-second loading system ready');
+    </script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayor's Store - Online Shopping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+            
+                    <img src="Mayor's Store.png" alt="Company Logo">
+                
+                <h1>Mayor's <span>Store</span></h1>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="user-actions">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="user-name">Welcome, User</span>
+                    </div>
+                    <button class="btn btn-login" id="loginBtn">Login</button>
+                    <button class="btn btn-logout" id="logoutBtn">Logout</button>
+                    <button class="btn btn-register" id="registerBtn">Register</button>
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="hero" id="home">
+            <h2>Welcome to Mayor's Store</h2>
+            <p>Discover premium products with exceptional quality. From electronics to fashion, we have everything you need for a modern lifestyle.</p>
+            <button class="btn-shop" id="shopNowBtn">Shop Now</button>
+        </section>
+
+        <section id="products">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+        </section>
+
+                <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-header">
+                    <h2 class="section-title">About Mayor's Store</h2>
+                    <p class="about-subtitle">Your Trusted Partner for Premium Shopping in Yobe State and Beyond</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="about-intro">
+                            <h3>Our Story</h3>
+                            <p>Founded in 2025, Mayor's Store emerged from a simple vision: to bring premium quality products within reach of every household in Damaturu and across Nigeria. What started as a small retail space in Chilla Plaza has grown into Yobe State's most trusted online shopping destination.</p>
+                            <p>We bridge the gap between global quality standards and local accessibility, ensuring that our customers don't have to compromise on excellence regardless of their location.</p>
+                        </div>
+                        
+                        <div class="mission-vision">
+                            <div class="mission">
+                                <div class="mission-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <h4>Our Mission</h4>
+                                <p>To revolutionize online shopping in Northern Nigeria by providing exceptional quality products, reliable delivery, and outstanding customer service that exceeds expectations.</p>
+                            </div>
+                            
+                            <div class="vision">
+                                <div class="vision-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <h4>Our Vision</h4>
+                                <p>To become Nigeria's most customer-centric e-commerce platform, recognized for trust, quality, and innovation while creating economic opportunities in our community.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="values">
+                            <h3>Our Core Values</h3>
+                            <div class="values-grid">
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <h5>Trust & Reliability</h5>
+                                    <p>We build lasting relationships through transparency and consistent delivery on our promises.</p>
+                                </div>
+                                
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h5>Quality Excellence</h5>
+                                    <p>Every product undergoes rigorous quality checks to ensure it meets our high standards.</p>
+                                </div>
+                                
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h5>Customer First</h5>
+                                    <p>Your satisfaction is our priority. We listen, adapt, and go the extra mile for every customer.</p>
+                                </div>
+                                
+                                <div class="value-card">
+                                    <div class="value-icon">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <h5>Community Impact</h5>
+                                    <p>We're committed to sustainable growth that benefits our local economy and environment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievements">
+                            <h3>Why Choose Mayor's Store?</h3>
+                            <div class="achievement-stats">
+                                <div class="stat">
+                                    <div class="stat-number" data-count="1000">1000+</div>
+                                    <div class="stat-label">Happy Customers</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number" data-count="98">98%</div>
+                                    <div class="stat-label">Satisfaction Rate</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number" data-count="24">24</div>
+                                    <div class="stat-label">Hour Support</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number" data-count="500">100+</div>
+                                    <div class="stat-label">Products</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-section">
+                            <h3>Meet Our Leadership</h3>
+                            <div class="team-grid">
+                                <div class="team-member">
+                                    <div class="member-image">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <h5>Ezekiel Bitrus Samuel</h5>
+                                    <p class="member-role">Founder & CEO</p>
+                                    <p class="member-desc">With 15+ years in retail management, Mr. Ezekiel Bitrus Samuel leads our vision for excellence.</p>
+                                </div>
+                                
+                                <div class="team-member">
+                                    <div class="member-image">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h5></h5>
+                                    <p class="member-role">Operations Manager</p>
+                                    <p class="member-desc">Ensuring seamless logistics and customer experience across all touchpoints.</p>
+                                </div>
+                                
+                                <div class="team-member">
+                                    <div class="member-image">
+                                        <i class="fas fa-shopping-basket"></i>
+                                    </div>
+                                    <h5></h5>
+                                    <p class="member-role">Procurement Head</p>
+                                    <p class="member-desc">Expert in sourcing premium products at the best value for our customers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <div class="image-container">
+                            <img src="#" 
+                                 alt="Mayor's Store interior showing organized product displays">
+                            <div class="image-caption">
+                                <p>Our flagship store at Chilla Plaza, Damaturu</p>
+                            </div>
+                        </div>
+                        
+                        <div class="store-info">
+                            <h4>Visit Our Store</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> B10 Chilla Plaza, Gjuba Road, Damaturu</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-8PM | Sun: 10AM-6PM</p>
+                            <p><i class="fas fa-phone"></i> +234 812 152 2421</p>
+                            <button class="btn-get-directions" id="directionsBtn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <h3>Ready to Experience Premium Shopping?</h3>
+                    <p>Join thousands of satisfied customers who trust Mayor's Store for quality products and exceptional service.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================== -->
+        <!-- CONTACT SECTION - ADDED HERE                -->
+        <!-- =========================================== -->
+      <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="contact-subtitle">Get in touch with us. We'd love to hear from you!</p>
+    
+    <div class="contact-container">
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Our Location</h3>
+                <p>B10 Chilla Plaza</p>
+                <p>Gjuba Road Damaturu</p>
+                <p>Yobe State, Nigeria</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone Number</h3>
+                <p>+234 812 152 2421</p>
+                <p>+234 704 689 6164</p>
+                <p>Mon-Sat: 8:00 AM - 8:00 PM WAT</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Address</h3>
+                <p>info@mayorsstore.com</p>
+                <p>support@mayorsstore.com</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Business Hours</h3>
+                <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
+                <p>Sunday: 10:00 AM - 6:00 PM</p>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-container">
+            <h3>Send us a Message</h3>
+            <form id="contactForm" class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">Full Name *</label>
+                        <input type="text" id="contactName" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address *</label>
+                        <input type="email" id="contactEmail" required placeholder="Your email address">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactSubject">Subject</label>
+                    <input type="text" id="contactSubject" placeholder="How can we help you?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" rows="6" required placeholder="Your message here..."></textarea>
+                </div>
+                
+                <button type="submit" class="contact-submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Map Section -->
+    <div class="map-container">
+        <h3>Find Us on the Map</h3>
+        <div class="map-placeholder">
+            <div class="map-content">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Mayor's Store Location</p>
+                <p>B10 Chilla Plaza Gjuba Road Damaturu, Yobe State</p>
+                <button class="btn-view-map" id="viewMapBtn">View on Google Maps</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What are your shipping options and costs?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer standard delivery (3-5 business days) within Yobe State for ₦500, express delivery (1-2 business days) for ₦1,000, and free delivery on orders over ₦10,000. We also ship to other Nigerian states with variable rates.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is your return policy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can return items within 7 days of delivery for a full refund. Items must be in original condition with all packaging and tags intact. We provide pickup service for returns within Damaturu.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I track my order?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Once your order is dispatched, you'll receive an SMS with a tracking number. You can also track your order by logging into your account on our website or by contacting our customer support.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer delivery outside Damaturu?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we deliver to all states in Nigeria through our logistics partners. Delivery costs and times vary by location. You can view shipping options at checkout for your specific location.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept bank transfers, cash on delivery (within Damaturu), and online payments through Flutterwave and Paystack. All online payments are secured with SSL encryption.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you have a physical store I can visit?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Visit us at our physical store at B10 Chilla Plaza, Gjuba Road, Damaturu, Yobe State. Our store hours are Monday-Saturday 8AM-8PM and Sunday 10AM-6PM.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- =========================================== -->
+        <!-- END OF CONTACT SECTION                      -->
+        <!-- =========================================== -->
+    </main>
+
+    <!-- Login Form -->
+    <div class="form-container" id="loginForm">
+        <div class="form-box">
+            <div class="form-header">
+                <h2>Login to Your Account</h2>
+                <button class="close-form" id="closeLoginForm">&times;</button>
+            </div>
+            <form id="loginFormElement">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="form-btn">Login</button>
+            </form>
+            <div class="form-footer">
+                <p>Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="form-container" id="registerForm">
+        <div class="form-box">
+            <div class="form-header">
+                <h2>Create an Account</h2>
+                <button class="close-form" id="closeRegisterForm">&times;</button>
+            </div>
+            <form id="registerFormElement">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="form-btn">Create Account</button>
+            </form>
+            <div class="form-footer">
+                <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Shopping Cart</h2>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded by JavaScript -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <p>Add some products to get started</p>
+            </div>
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mayor's Store. All rights reserved.</p>
+        <p>Premium Online Shopping Experience</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="products.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="app.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>
