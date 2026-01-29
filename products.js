@@ -61,7 +61,7 @@ window.products = [
         image: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
     },
      {
-        id: "9",
+        id: 9,
         name: "Coffee Mug",
         description: "Ceramic coffee mug with a sleek design and comfortable grip.",
         price: 67.99,
